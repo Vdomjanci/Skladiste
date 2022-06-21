@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Odjel">
+          <Key>
+            <PropertyRef Name="OdjelID" />
+          </Key>
+          <Property Name="OdjelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Oprema">
+          <Key>
+            <PropertyRef Name="OpremaID" />
+          </Key>
+          <Property Name="OpremaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stanje" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipOpreme">
+          <Key>
+            <PropertyRef Name="TipID" />
+          </Key>
+          <Property Name="TipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UlogaZaposlenika">
+          <Key>
+            <PropertyRef Name="UlogaID" />
+          </Key>
+          <Property Name="UlogaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zaduzenje">
+          <Key>
+            <PropertyRef Name="OpremaID" />
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="OpremaID" Type="int" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="int" Nullable="false" />
+          <Property Name="DatumZaduzivanja" Type="datetime" Nullable="false" />
+          <Property Name="DatumRazduzivanja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="ZaposlenikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImePrezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefon" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="varchar" MaxLength="50" />
+          <Property Name="Lozinka" Type="varchar" MaxLength="50" />
+          <Property Name="Opis" Type="varchar" MaxLength="255" />
+          <Property Name="OdjelID" Type="int" Nullable="false" />
+          <Property Name="UlogaID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Oprema_TipOpreme">
+          <End Role="TipOpreme" Type="Self.TipOpreme" Multiplicity="1" />
+          <End Role="Oprema" Type="Self.Oprema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipOpreme">
+              <PropertyRef Name="TipID" />
+            </Principal>
+            <Dependent Role="Oprema">
+              <PropertyRef Name="TipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaduzenje_Oprema">
+          <End Role="Oprema" Type="Self.Oprema" Multiplicity="1" />
+          <End Role="Zaduzenje" Type="Self.Zaduzenje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oprema">
+              <PropertyRef Name="OpremaID" />
+            </Principal>
+            <Dependent Role="Zaduzenje">
+              <PropertyRef Name="OpremaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaduzenje_Zaposlenik">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Zaduzenje" Type="Self.Zaduzenje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="Zaduzenje">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_Odjel">
+          <End Role="Odjel" Type="Self.Odjel" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odjel">
+              <PropertyRef Name="OdjelID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="OdjelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_UlogaZaposlenika">
+          <End Role="UlogaZaposlenika" Type="Self.UlogaZaposlenika" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UlogaZaposlenika">
+              <PropertyRef Name="UlogaID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="UlogaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Odjel" EntityType="Self.Odjel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oprema" EntityType="Self.Oprema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipOpreme" EntityType="Self.TipOpreme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UlogaZaposlenika" EntityType="Self.UlogaZaposlenika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaduzenje" EntityType="Self.Zaduzenje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Oprema_TipOpreme" Association="Self.FK_Oprema_TipOpreme">
+            <End Role="TipOpreme" EntitySet="TipOpreme" />
+            <End Role="Oprema" EntitySet="Oprema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaduzenje_Oprema" Association="Self.FK_Zaduzenje_Oprema">
+            <End Role="Oprema" EntitySet="Oprema" />
+            <End Role="Zaduzenje" EntitySet="Zaduzenje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaduzenje_Zaposlenik" Association="Self.FK_Zaduzenje_Zaposlenik">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Zaduzenje" EntitySet="Zaduzenje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_Odjel" Association="Self.FK_Zaposlenik_Odjel">
+            <End Role="Odjel" EntitySet="Odjel" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_UlogaZaposlenika" Association="Self.FK_Zaposlenik_UlogaZaposlenika">
+            <End Role="UlogaZaposlenika" EntitySet="UlogaZaposlenika" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Odjel">
+          <Key>
+            <PropertyRef Name="OdjelID" />
+          </Key>
+          <Property Name="OdjelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Zaposlenik_Odjel" FromRole="Odjel" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Oprema">
+          <Key>
+            <PropertyRef Name="OpremaID" />
+          </Key>
+          <Property Name="OpremaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stanje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipOpreme" Relationship="Self.FK_Oprema_TipOpreme" FromRole="Oprema" ToRole="TipOpreme" />
+          <NavigationProperty Name="Zaduzenje" Relationship="Self.FK_Zaduzenje_Oprema" FromRole="Oprema" ToRole="Zaduzenje" />
+        </EntityType>
+        <EntityType Name="TipOpreme">
+          <Key>
+            <PropertyRef Name="TipID" />
+          </Key>
+          <Property Name="TipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Oprema" Relationship="Self.FK_Oprema_TipOpreme" FromRole="TipOpreme" ToRole="Oprema" />
+        </EntityType>
+        <EntityType Name="UlogaZaposlenika">
+          <Key>
+            <PropertyRef Name="UlogaID" />
+          </Key>
+          <Property Name="UlogaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Zaposlenik_UlogaZaposlenika" FromRole="UlogaZaposlenika" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Zaduzenje">
+          <Key>
+            <PropertyRef Name="OpremaID" />
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="OpremaID" Type="Int32" Nullable="false" />
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" />
+          <Property Name="DatumZaduzivanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumRazduzivanja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Oprema" Relationship="Self.FK_Zaduzenje_Oprema" FromRole="Zaduzenje" ToRole="Oprema" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Zaduzenje_Zaposlenik" FromRole="Zaduzenje" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ZaposlenikID" />
+          </Key>
+          <Property Name="ZaposlenikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImePrezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lozinka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OdjelID" Type="Int32" Nullable="false" />
+          <Property Name="UlogaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Odjel" Relationship="Self.FK_Zaposlenik_Odjel" FromRole="Zaposlenik" ToRole="Odjel" />
+          <NavigationProperty Name="UlogaZaposlenika" Relationship="Self.FK_Zaposlenik_UlogaZaposlenika" FromRole="Zaposlenik" ToRole="UlogaZaposlenika" />
+          <NavigationProperty Name="Zaduzenje" Relationship="Self.FK_Zaduzenje_Zaposlenik" FromRole="Zaposlenik" ToRole="Zaduzenje" />
+        </EntityType>
+        <Association Name="FK_Zaposlenik_Odjel">
+          <End Role="Odjel" Type="Self.Odjel" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odjel">
+              <PropertyRef Name="OdjelID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="OdjelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oprema_TipOpreme">
+          <End Role="TipOpreme" Type="Self.TipOpreme" Multiplicity="1" />
+          <End Role="Oprema" Type="Self.Oprema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipOpreme">
+              <PropertyRef Name="TipID" />
+            </Principal>
+            <Dependent Role="Oprema">
+              <PropertyRef Name="TipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaduzenje_Oprema">
+          <End Role="Oprema" Type="Self.Oprema" Multiplicity="1" />
+          <End Role="Zaduzenje" Type="Self.Zaduzenje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oprema">
+              <PropertyRef Name="OpremaID" />
+            </Principal>
+            <Dependent Role="Zaduzenje">
+              <PropertyRef Name="OpremaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_UlogaZaposlenika">
+          <End Role="UlogaZaposlenika" Type="Self.UlogaZaposlenika" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UlogaZaposlenika">
+              <PropertyRef Name="UlogaID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="UlogaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaduzenje_Zaposlenik">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Zaduzenje" Type="Self.Zaduzenje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ZaposlenikID" />
+            </Principal>
+            <Dependent Role="Zaduzenje">
+              <PropertyRef Name="ZaposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Odjel" EntityType="Self.Odjel" />
+          <EntitySet Name="Oprema" EntityType="Self.Oprema" />
+          <EntitySet Name="TipOpreme" EntityType="Self.TipOpreme" />
+          <EntitySet Name="UlogaZaposlenika" EntityType="Self.UlogaZaposlenika" />
+          <EntitySet Name="Zaduzenje" EntityType="Self.Zaduzenje" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" />
+          <AssociationSet Name="FK_Zaposlenik_Odjel" Association="Self.FK_Zaposlenik_Odjel">
+            <End Role="Odjel" EntitySet="Odjel" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oprema_TipOpreme" Association="Self.FK_Oprema_TipOpreme">
+            <End Role="TipOpreme" EntitySet="TipOpreme" />
+            <End Role="Oprema" EntitySet="Oprema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaduzenje_Oprema" Association="Self.FK_Zaduzenje_Oprema">
+            <End Role="Oprema" EntitySet="Oprema" />
+            <End Role="Zaduzenje" EntitySet="Zaduzenje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_UlogaZaposlenika" Association="Self.FK_Zaposlenik_UlogaZaposlenika">
+            <End Role="UlogaZaposlenika" EntitySet="UlogaZaposlenika" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaduzenje_Zaposlenik" Association="Self.FK_Zaduzenje_Zaposlenik">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Zaduzenje" EntitySet="Zaduzenje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Odjel">
+            <EntityTypeMapping TypeName="Model.Odjel">
+              <MappingFragment StoreEntitySet="Odjel">
+                <ScalarProperty Name="OdjelID" ColumnName="OdjelID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oprema">
+            <EntityTypeMapping TypeName="Model.Oprema">
+              <MappingFragment StoreEntitySet="Oprema">
+                <ScalarProperty Name="OpremaID" ColumnName="OpremaID" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Stanje" ColumnName="Stanje" />
+                <ScalarProperty Name="TipID" ColumnName="TipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipOpreme">
+            <EntityTypeMapping TypeName="Model.TipOpreme">
+              <MappingFragment StoreEntitySet="TipOpreme">
+                <ScalarProperty Name="TipID" ColumnName="TipID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UlogaZaposlenika">
+            <EntityTypeMapping TypeName="Model.UlogaZaposlenika">
+              <MappingFragment StoreEntitySet="UlogaZaposlenika">
+                <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaduzenje">
+            <EntityTypeMapping TypeName="Model.Zaduzenje">
+              <MappingFragment StoreEntitySet="Zaduzenje">
+                <ScalarProperty Name="OpremaID" ColumnName="OpremaID" />
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="DatumZaduzivanja" ColumnName="DatumZaduzivanja" />
+                <ScalarProperty Name="DatumRazduzivanja" ColumnName="DatumRazduzivanja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaposlenik">
+            <EntityTypeMapping TypeName="Model.Zaposlenik">
+              <MappingFragment StoreEntitySet="Zaposlenik">
+                <ScalarProperty Name="ZaposlenikID" ColumnName="ZaposlenikID" />
+                <ScalarProperty Name="ImePrezime" ColumnName="ImePrezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="OdjelID" ColumnName="OdjelID" />
+                <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC6D32F2-6E4F-4A6B-8BE1-7C02D4A42CA4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Veronika_Domjancic</RootNamespace>
+    <AssemblyName>Veronika Domjancic</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forme\DetaljiOpremeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DetaljiOpremeForm.Designer.cs">
+      <DependentUpon>DetaljiOpremeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DetaljiZaduzenoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DetaljiZaduzenoForm.Designer.cs">
+      <DependentUpon>DetaljiZaduzenoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DetaljiZaposlenikaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DetaljiZaposlenikaForm.Designer.cs">
+      <DependentUpon>DetaljiZaposlenikaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajOpremuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajOpremuForm.Designer.cs">
+      <DependentUpon>DodajOpremuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajZaduzenoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajZaduzenoForm.Designer.cs">
+      <DependentUpon>DodajZaduzenoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\DodajZaposlenikaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\DodajZaposlenikaForm.Designer.cs">
+      <DependentUpon>DodajZaposlenikaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\FormaOprema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\FormaOprema.Designer.cs">
+      <DependentUpon>FormaOprema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\FormaOtpis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\FormaOtpis.Designer.cs">
+      <DependentUpon>FormaOtpis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\FormaZaduzeno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\FormaZaduzeno.Designer.cs">
+      <DependentUpon>FormaZaduzeno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\FormaZaposlenici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\FormaZaposlenici.Designer.cs">
+      <DependentUpon>FormaZaposlenici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\IzbornikForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\IzbornikForm.Designer.cs">
+      <DependentUpon>IzbornikForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\IzmjeniOpremuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\IzmjeniOpremuForm.Designer.cs">
+      <DependentUpon>IzmjeniOpremuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\IzmjeniZaduzenoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\IzmjeniZaduzenoForm.Designer.cs">
+      <DependentUpon>IzmjeniZaduzenoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\IzmjeniZaposlenikaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\IzmjeniZaposlenikaForm.Designer.cs">
+      <DependentUpon>IzmjeniZaposlenikaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Pocetna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Pocetna.Designer.cs">
+      <DependentUpon>Pocetna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\PrijavaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\PrijavaForm.Designer.cs">
+      <DependentUpon>PrijavaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Odjel.code.cs" />
+    <Compile Include="Odjel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Oprema.code.cs" />
+    <Compile Include="Oprema.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipOpreme.code.cs" />
+    <Compile Include="TipOpreme.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UlogaZaposlenika.code.cs" />
+    <Compile Include="UlogaZaposlenika.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Zaduzenje.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Zaposlenik.code.cs" />
+    <Compile Include="Zaposlenik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forme\DetaljiOpremeForm.resx">
+      <DependentUpon>DetaljiOpremeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DetaljiZaduzenoForm.resx">
+      <DependentUpon>DetaljiZaduzenoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DetaljiZaposlenikaForm.resx">
+      <DependentUpon>DetaljiZaposlenikaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajOpremuForm.resx">
+      <DependentUpon>DodajOpremuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajZaduzenoForm.resx">
+      <DependentUpon>DodajZaduzenoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\DodajZaposlenikaForm.resx">
+      <DependentUpon>DodajZaposlenikaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\FormaOprema.resx">
+      <DependentUpon>FormaOprema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\FormaOtpis.resx">
+      <DependentUpon>FormaOtpis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\FormaZaduzeno.resx">
+      <DependentUpon>FormaZaduzeno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\FormaZaposlenici.resx">
+      <DependentUpon>FormaZaposlenici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\IzbornikForm.resx">
+      <DependentUpon>IzbornikForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\IzmjeniOpremuForm.resx">
+      <DependentUpon>IzmjeniOpremuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\IzmjeniZaduzenoForm.resx">
+      <DependentUpon>IzmjeniZaduzenoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\IzmjeniZaposlenikaForm.resx">
+      <DependentUpon>IzmjeniZaposlenikaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Pocetna.resx">
+      <DependentUpon>Pocetna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\PrijavaForm.resx">
+      <DependentUpon>PrijavaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.FormaOprema.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.FormaOtpis.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.FormaZaduzeno.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.FormaZaposlenici.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.IzbornikForm.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Forme.PrijavaForm.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Veronika_Domjancic.Properties.Settings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
