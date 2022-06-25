@@ -55,7 +55,6 @@ namespace Veronika_Domjancic.Forme {
         {
             using (var context = new Entities())
             {
-
                 string imeprezime = txtImePrezime.Text;
                 string mail = txtMail.Text;
                 string tel = txtTelefon.Text;
