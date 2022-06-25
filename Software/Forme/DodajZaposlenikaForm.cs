@@ -93,7 +93,7 @@ namespace Veronika_Domjancic.Forme {
                     context.SaveChanges();
                     Close();
 
-                }
+
             }
         }
 

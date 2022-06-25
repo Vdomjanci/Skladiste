@@ -20,12 +20,13 @@ namespace Veronika_Domjancic.Forme
             prijavljen = zaposlenik; 
         }
 
-        private void FormaZaduzeno_Load(object sender, EventArgs e) {
-            Osvjezi();
-        }
-
         private void Osvjezi() {
             PrikaziZaduzenja();
+        }
+
+        private void FormaZaduzeno_Load(object sender, EventArgs e)
+        {
+            Osvjezi();
         }
 
         private void PrikaziZaduzenja() {
@@ -49,6 +50,7 @@ namespace Veronika_Domjancic.Forme
                 DGVZaduzeno.DataSource = query.ToList();
                 DGVZaduzeno.Columns["ZaposlenikID"].Visible = false;
                 DGVZaduzeno.Columns["OpremaID"].Visible = false;
+                DGVZaduzeno.Columns["DatumRazduzivanja"].Visible = false;
 
             }
         }
@@ -92,6 +94,7 @@ namespace Veronika_Domjancic.Forme
         private void btnDetalji_Click(object sender, EventArgs e) {
             DetaljiZaduzenoForm forma = new DetaljiZaduzenoForm(DohvatiOdabranoZaduzenje());
             forma.Show();
+            Osvjezi();
         }
 
         private void txtPretrazi_TextChanged(object sender, EventArgs e) {
