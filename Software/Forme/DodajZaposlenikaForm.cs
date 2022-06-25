@@ -51,42 +51,50 @@ namespace Veronika_Domjancic.Forme {
 
         }
 
-        private void btnSpremi_Click(object sender, EventArgs e) {
-            using (var context = new Entities()) {
+        private void btnSpremi_Click(object sender, EventArgs e)
+        {
+            using (var context = new Entities())
+            {
+
                 string imeprezime = txtImePrezime.Text;
                 string mail = txtMail.Text;
                 string tel = txtTelefon.Text;
                 string korime = txtKorIme.Text;
                 string lozinka = txtLozinka.Text;
                 string opis = txtOpis.Text;
+                if (Provjera.ProvjeraZaposlenika(mail, tel))
+                {
+                    if (imeprezime == null)
+                    {
+                        MessageBox.Show("Unesite ime i prezime!");
+                    }
 
-                if (imeprezime == null) { 
-                    MessageBox.Show("Unesite ime i prezime!");
+                    if (mail == null)
+                    {
+                        MessageBox.Show("Unesite E-mail!");
+                    }
+
+
+                    Odjel odabraniOdjel = DohvatiOdjel();
+                    UlogaZaposlenika odabranaUloga = DohvatiUlogu();
+                    Zaposlenik noviZaposlenik = new Zaposlenik
+                    {
+                        ImePrezime = imeprezime,
+                        Email = mail,
+                        Telefon = tel,
+                        KorisnickoIme = korime,
+                        Lozinka = lozinka,
+                        OdjelID = odabraniOdjel.OdjelID,
+                        Opis = opis,
+                        UlogaID = odabranaUloga.UlogaID
+
+                    };
+                    context.Zaposlenik.Add(noviZaposlenik);
+                    context.SaveChanges();
+                    Close();
+
                 }
-
-                if (mail == null) {
-                    MessageBox.Show("Unesite E-mail!");
-                }
-
-
-                Odjel odabraniOdjel = DohvatiOdjel();
-                UlogaZaposlenika odabranaUloga = DohvatiUlogu();
-                Zaposlenik noviZaposlenik = new Zaposlenik {
-                    ImePrezime = imeprezime,
-                    Email = mail,
-                    Telefon = tel,
-                    KorisnickoIme = korime,
-                    Lozinka = lozinka,
-                    OdjelID = odabraniOdjel.OdjelID,
-                    Opis = opis,
-                    UlogaID = odabranaUloga.UlogaID
-
-                };
-                context.Zaposlenik.Add(noviZaposlenik);
-                context.SaveChanges();
-
             }
-            Close();
         }
 
 
