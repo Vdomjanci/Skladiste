@@ -60,12 +60,14 @@ namespace Veronika_Domjancic.Forme {
                 string lozinka = txtLozinka.Text;
                 string opis = txtOpis.Text;
 
-                if (imeprezime == null) { 
+                if (String.IsNullOrEmpty(imeprezime)) { 
                     MessageBox.Show("Unesite ime i prezime!");
+                    return;
                 }
 
-                if (mail == null) {
+                if (String.IsNullOrEmpty(mail)) {
                     MessageBox.Show("Unesite E-mail!");
+                    return;
                 }
 
 
