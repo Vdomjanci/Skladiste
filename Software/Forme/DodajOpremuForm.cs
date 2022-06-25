@@ -56,19 +56,22 @@ namespace Veronika_Domjancic.Forme
                 string tip = cboxTip.SelectedItem.ToString();
                 string sn = txtSN.Text;
                 string stanje = txtStanje.Text;
-                if (model == null)
+                if (String.IsNullOrEmpty(model))
                 {
                     MessageBox.Show("Unesite model!");
+                    return;
                 }
                 
-                if (sn == null)
+                if (String.IsNullOrEmpty(sn))
                 {
                     MessageBox.Show("Unesite serijski broj!");
+                    return;
                 }
                 
                 if (context.Oprema.Where(o => o.SN == sn).Any())
                 {
                     MessageBox.Show("Uneseni serijski broj već postoji!");
+                    return;
                 }
                 
                 TipOpreme odabraniTip = DohvatiTip();
